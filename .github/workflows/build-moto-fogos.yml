@@ -79,7 +79,6 @@ env:
 
   BUILD_OTHER_CONFIG: "true" # Merge config files.
   MERGE_CONFIG_FILES: "vendor/debugfs.config,vendor/ext_config/lineage_moto-holi.config,vendor/ext_config/moto-holi.config"
-"
 
   FREE_MORE_SPACE: "false" # if u want get more space, enabled it.
 
