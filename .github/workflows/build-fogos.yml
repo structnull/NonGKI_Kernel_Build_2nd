@@ -1,4 +1,4 @@
-name: Build Moto g34/45 kernel with susfs and ksu (WKCW)
+name: Build Moto g34/45 kernel with susfs and ksu 
 
 on:
   workflow_call:
@@ -12,8 +12,8 @@ env:
   CUSTOM_CMDS : "CLANG_TRIPLE=aarch64-linux-gnu-"
   EXTRA_CMDS : "LD=ld.lld LLVM=1 LLVM_IAS=1"
 
-  KERNEL_SOURCE : "https://github.com/WKCW-Project/android_kernel_motorola_sm6375.git"
-  KERNEL_BRANCH : "wkcw"
+  KERNEL_SOURCE : "https://github.com/LineageOS/android_kernel_motorola_sm6375"
+  KERNEL_BRANCH : "lineage-22.2"
 
   CLANG_SOURCE : "https://github.com/ZyCromerZ/Clang/releases/download/22.0.0git-20250928-release/Clang-22.0.0git-20250928.tar.gz"
   CLANG_BRANCH : ""
