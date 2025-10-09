@@ -118,6 +118,12 @@ jobs:
       - name: 🧰 Patch Kernel of Re:Kernel
         uses: ./.github/workflows/patch-rekernel
 
+      - name: 🧹 Fix unused inode variable error
+        run: |
+          cd $GITHUB_WORKSPACE/device_kernel
+          # Remove the unused 'inode' declaration line in fs/readdir.c
+          sed -i '/struct inode \*inode;/d' fs/readdir.c
+
       - name: 🚀 Build Process
         uses: ./.github/workflows/build-process
 
