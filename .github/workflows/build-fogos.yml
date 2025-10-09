@@ -15,7 +15,7 @@ env:
   KERNEL_SOURCE : "https://github.com/LineageOS/android_kernel_motorola_sm6375"
   KERNEL_BRANCH : "lineage-22.2"
 
-  CLANG_SOURCE : "https://github.com/ZyCromerZ/Clang/releases/download/22.0.0git-20250928-release/Clang-22.0.0git-20250928.tar.gz"
+  CLANG_SOURCE : "https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r530567.git"
   CLANG_BRANCH : ""
 
   GCC_GNU : false
