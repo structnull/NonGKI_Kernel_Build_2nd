@@ -1,4 +1,4 @@
-name: Build Moto g34/45 kernel with susfs and ksu
+name: Build Moto g34/45 kernel with susfs and ksu (WKCW)
 
 on:
   workflow_call:
@@ -10,7 +10,7 @@ env:
   DEVICE_CODENAME : "fogos"
 
   CUSTOM_CMDS : "CLANG_TRIPLE=aarch64-linux-gnu-"
-  extra_cmds : "ld=ld.lld llvm=1 llvm_ias=1"
+  EXTRA_CMDS : "LD=ld.lld LLVM=1 LLVM_IAS=1"
 
   KERNEL_SOURCE : "https://github.com/WKCW-Project/android_kernel_motorola_sm6375.git"
   KERNEL_BRANCH : "wkcw"
