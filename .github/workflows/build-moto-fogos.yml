@@ -117,26 +117,27 @@ jobs:
       - name: 🧰 Patch Kernel of Re:Kernel
         uses: ./.github/workflows/patch-rekernel
 
-      # --- NEW: create a zip of the patched kernel directory and upload it as an artifact ---
       - name: 📦 Create patched kernel zip
-        if: always()
         run: |
-          # choose the directory you want to archive; adjust if your patched kernel is elsewhere.
-          ZIP_NAME="patched-${{ env.DEVICE_NAME }}.zip"
-          echo "Creating $ZIP_NAME from device_kernel/"
-          # ensure the target exists (avoid failing job if missing)
-          if [ -d "$GITHUB_WORKSPACE/device_kernel" ]; then
-            cd "$GITHUB_WORKSPACE"
-            zip -r "$ZIP_NAME" device_kernel || echo "zip failed or partially succeeded"
-            ls -lh "$ZIP_NAME" || true
+          cd "$GITHUB_WORKSPACE"
+          ZIP_NAME="patched-kern.zip"
+
+          # Ensure the kernel source directory exists
+          if [ -d "device_kernel" ]; then
+            echo "📁 Found device_kernel directory. Creating archive..."
+            zip -r "$ZIP_NAME" device_kernel > /dev/null
+            echo "✅ Created $ZIP_NAME successfully."
           else
-            echo "Warning: device_kernel/ not found; creating empty placeholder archive"
-            mkdir -p tmp_empty && cd tmp_empty && touch README && zip -r "../$ZIP_NAME" README
+            echo "⚠️ device_kernel directory not found! Creating empty archive instead."
+            mkdir empty && echo "device_kernel not found." > empty/README.txt
+            zip -r "$ZIP_NAME" empty > /dev/null
           fi
 
+          echo "📦 Final file details:"
+          ls -lh "$ZIP_NAME"
+
       - name: 📤 Upload patched kernel artifact
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: patched-kern.zip
-          path: patched-kern.zip
+          name: patched-kern
+          path: ${{ github.workspace }}/patched-kern.zip
