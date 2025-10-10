@@ -121,7 +121,7 @@ jobs:
       - name: 🧹 Fix unused inode variable error
         run: |
           cd $GITHUB_WORKSPACE/device_kernel
-          sed -i 's/struct inode \*inode;/struct inode *inode = NULL;/' fs/readdir.c || true
+          sed -i '/struct inode \*inode;/d' fs/readdir.c || true
 
       - name: 🚀 Build Process
         uses: ./.github/workflows/build-process
